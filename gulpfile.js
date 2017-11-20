@@ -30,6 +30,14 @@ gulp.task("build:dev", (done)=>
     done
 ));
 
+gulp.task("build:prod", (done)=>
+runSequence(
+  'lint',
+  'c:dist',
+  'b:prod',
+  done
+));
+
 // Linting typescript files with tslint
 gulp.task("lint", tasks("tslint", { config: path.join(__dirname, "tslint.json") } ));
 
@@ -38,6 +46,9 @@ gulp.task('c:dist', tasks('clear.dist'));
 
 // Build dev bundle using webpack dev configurations
 gulp.task("b:dev", tasks('build.dev', { config: getWebpackConfig('webpack.dev') }));
+
+// Build dev bundle using webpack prod configurations
+gulp.task("b:prod", tasks('build.prod', { config: getWebpackConfig('webpack.prod') }));
 
 // Watch
 gulp.task("lint:w", () => {

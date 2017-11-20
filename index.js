@@ -4,10 +4,10 @@ const express = require("express");
 const app = express();
 
 // Point static path to dist
-app.use(express.static("src"));
+app.use(express.static("dist/public"));
 
 app.get("/", (req, res) => {
-  res.sendFile("src/index.html");
+  res.sendFile("dist/public/index.html");
 });
 
 
