@@ -4,6 +4,8 @@ const plugins = require("gulp-load-plugins")();
 
 const path = require("path");
 
+const runSequence = require('run-sequence');
+
 const config = {
   projectDir: __dirname,
   configDir: path.join(__dirname, "config"),
@@ -20,8 +22,22 @@ function getWebpackConfig(configEnv){
     return require( path.join(config.configDir, configEnv) );
 }
 
+gulp.task("build:dev", (done)=>
+  runSequence(
+    'lint',
+    'c:dist',
+    'b:dev',
+    done
+));
+
 // Linting typescript files with tslint
 gulp.task("lint", tasks("tslint", { config: path.join(__dirname, "tslint.json") } ));
+
+// Clear dist folder
+gulp.task('c:dist', tasks('clear.dist'));
+
+// Build dev bundle using webpack dev configurations
+gulp.task("b:dev", tasks('build.dev', { config: getWebpackConfig('webpack.dev') }));
 
 // Watch
 gulp.task("lint:w", () => {
