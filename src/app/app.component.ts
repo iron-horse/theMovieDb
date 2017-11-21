@@ -1,3 +1,6 @@
+/**
+ * Initial component of the application
+ */
 import { Component } from "@angular/core";
 
 @Component({

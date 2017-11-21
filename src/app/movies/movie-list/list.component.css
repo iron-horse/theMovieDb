@@ -1,0 +1,8 @@
+.img-wrapper {
+  width: 100%;
+}
+
+.img-wrapper > .img {
+  width: 50%;
+  height: 275px;
+}
