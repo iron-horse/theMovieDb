@@ -11,10 +11,18 @@ import { UtilService } from "../../shared/services/util.service";
 @Component({
   selector: ".bg-movie-list",
   template: `
-  <div *ngIf="movies" class="img-wrapper">
+  <div *ngIf="movies;" class="img-wrapper">
+      <div *ngIf="movies.length == 0" class="padding-top-50 text-center">
+        <span>No result found.</span>
+      </div>
     <!-- we can use srcset for responsive images based on screen size -->
-    <img class="img" *ngFor="let movie of movies" src="{{this._util.posterURL(movie.poster_path)}}" alt="{{movie.title}}" (click)="getDetails(movie.id)" />
+    <img class="img" *ngFor="let movie of movies" src="{{this._util.posterURL(movie.poster_path)}}" alt="{{movie.title}}" (click)="getDetails(movie)" />
   </div>
+  <div *ngIf="!movies" class="padding-top-50 text-center">
+    <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+    <span class="sr-only">Loading...</span>
+  </div>
+
   `,
   styleUrls: ["./list.component.css"]
 })
@@ -39,11 +47,13 @@ export class MovieListComponent implements OnInit, OnDestroy {
   getMovies(page: number = 1): void {
     this.sub1 = this._movie.movies(page, "popular").subscribe((movies: Movie[]) => {
       // console.log("movies", movies);
-      this.movies.push(...movies);
+      if (movies) {
+        this.movies.push(...movies);
+      }
     });
   }
 
-  getDetails(id: number): void {
-    alert("TODO: Get Image Details for image ID: " + id);
+  getDetails(movie: Movie): void {
+    alert("TODO: Get Details for movie ID: " + movie.id + "(" + movie.title + ")");
   }
 }

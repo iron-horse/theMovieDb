@@ -6,6 +6,7 @@ var helpers = require("./helpers");
 
 
 const ENV = process.env.NODE_ENV = process.env.ENV || "development";
+const theMovieDBApiKey = process.env.theMovieDBApiKey = process.env.theMovieDBApiKey || "DEVELOPMENT_API_KEY_MOVIEDB";
 
 module.exports = webpackMerge(commonConfig, {
   target: "web",
@@ -26,7 +27,8 @@ module.exports = webpackMerge(commonConfig, {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       app: {
-        environment: JSON.stringify(ENV)
+        environment: JSON.stringify(ENV),
+        theMovieDBApiKey: JSON.stringify(theMovieDBApiKey)
       }
     })
   ],

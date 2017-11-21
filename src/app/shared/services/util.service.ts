@@ -9,7 +9,7 @@ export class UtilService {
 
   readonly theMovieDbURL: string = "https://api.themoviedb.org/3";
   readonly posterBaseURL: string = "http://image.tmdb.org/t/p";
-  readonly apiKey: string = ""; // Add your API KEY here.
+  readonly apiKey: string = app.theMovieDBApiKey;
 
   // TODO: create a pipe
   posterURL(relativeURL: string, size: string = "w185"): string {

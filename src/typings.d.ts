@@ -4,4 +4,5 @@
 
 declare var app: {
   environment: string;
+  theMovieDBApiKey: string;
 };
