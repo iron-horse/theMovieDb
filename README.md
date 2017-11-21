@@ -4,7 +4,7 @@ Steps to work on it or run in local
 
 - Clone the repository
 - Inside repository run `npm install`
-- You will need to Add Your own theMovieDB API key in `src/app/shared/services/util.service.ts` file.
+- You will need to add your own theMovieDB API key in `src/app/shared/services/util.service.ts` file.
 - It should look something like,
 
   Before:
@@ -21,12 +21,12 @@ Steps to work on it or run in local
 
 - Run `npm run serve`
 
-To Create a Build file for Development environment,
+## To Create a Build file for Development environment,
 
 - Run `npm run build:dev`
 - Once it completes the process, run `npm start`
 
-To Create a Build file for Production environment,
+## To Create a Build file for Production environment,
 
 - Run `npm run build:prod`
 - Once it completes the process, run `npm sart`
